@@ -1,7 +1,7 @@
 import smtplib 
 from account import *
 
-with smtplib.SMTP("smtp.gamil.com", 587) as smtp:
+with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
   # Connection Check
   smtp.ehlo() 
   # Encoding
