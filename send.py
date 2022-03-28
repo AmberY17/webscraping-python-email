@@ -9,7 +9,7 @@ today_date = str(datetime.date.today())
 msg["Subject"] = today_date + " Carpe Diem!"
 msg["From"] = EMAIL_ADDRESS
 msg["To"] = "ysy011600@gmail.com"
-msg.set_content(scrape_weather())
+msg.set_content(scrape_weather() + "\n" + scrape_news())
 
 
 with smtplib.SMTP("smtp.gmail.com", 587) as smtp:

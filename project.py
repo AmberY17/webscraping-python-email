@@ -34,7 +34,7 @@ def scrape_weather():
   feels_like = soup.find('dt', attrs={"class":"term"}, string="체감").find_next_sibling('dd').get_text()
   rainfall_prob = soup.find('dt', attrs={"class":"ttl"}, string="강수확률").find_next_sibling('dd').get_text()
 
-  weather_summary = "Max : {} | Min : {} | Feels like : {} | Ranifall Probability : {}".format(max_temp, min_temp, feels_like, rainfall_prob)
+  weather_summary = "Max : {} | Min : {} | Feels like : {} | Ranifall Probability : {}".format(max_temp, min_temp, feels_like, rainfall_prob) + "\n"
   return weather_summary
 
 def scrape_news():
@@ -44,13 +44,18 @@ def scrape_news():
   
   news_list = soup.find('div', attrs={"class":"c-compact-river"}).find_all('h2', limit=3)
 
+  collections = []
+
   for index, news in enumerate(news_list):
     title = news_list[index].a.get_text()
     link = news_list[index].a["href"]
+    headline = str(index+1) + ". " + title + "\n" + link 
+    collections.append(headline + "\n")
 
-    print("{}. {}".format(index+1, title))
-    print("   " + link)
-print()
+    # print("{}. {}".format(index+1, title))
+    # print("   " + link)
+  collections_str = "\n".join(collections)
+  return collections_str
 
 def scrape_quotes():
   print("[Carpe Diem]")
