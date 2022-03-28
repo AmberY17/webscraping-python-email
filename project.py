@@ -34,8 +34,8 @@ def scrape_weather():
   feels_like = soup.find('dt', attrs={"class":"term"}, string="체감").find_next_sibling('dd').get_text()
   rainfall_prob = soup.find('dt', attrs={"class":"ttl"}, string="강수확률").find_next_sibling('dd').get_text()
 
-  print("Max : {} | Min : {} | Feels like : {} | Ranifall Probability : {}".format(max_temp, min_temp, feels_like, rainfall_prob))
-  print()
+  weather_summary = "Max : {} | Min : {} | Feels like : {} | Ranifall Probability : {}".format(max_temp, min_temp, feels_like, rainfall_prob)
+  return weather_summary
 
 def scrape_news():
   print("[News]")
