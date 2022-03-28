@@ -44,29 +44,32 @@ def scrape_news():
   
   news_list = soup.find('div', attrs={"class":"c-compact-river"}).find_all('h2', limit=3)
 
-  collections = []
+  collections_news = []
 
   for index, news in enumerate(news_list):
     title = news_list[index].a.get_text()
     link = news_list[index].a["href"]
     headline = str(index+1) + ". " + title + "\n" + link 
-    collections.append(headline + "\n")
+    collections_news.append(headline + "\n")
 
     # print("{}. {}".format(index+1, title))
     # print("   " + link)
-  collections_str = "\n".join(collections)
-  return collections_str
+  collections_news_str = "\n".join(collections_news)
+  return collections_news_str
 
 def scrape_quotes():
   print("[Carpe Diem]")
   url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%98%A4%EB%8A%98+%EB%AA%85%EC%96%B8&oquery=%EB%85%B8%EB%A0%A5+%EB%AA%85%EC%96%B8&tqi=hB0ildp0YihssPBek3KssssssA8-009031"
   soup = create_soup(url)
   
-  quoteList = soup.find_all('p', attrs={"class":"lngeng"}, limit=2)
-  for index, quote in enumerate(quoteList):
-    sentence = quoteList[index].get_text()
-    print("{}. {}".format(index+1, sentence))
-  print()
+  collections_quote = []
+  quote_list = soup.find_all('p', attrs={"class":"lngeng"}, limit=2)
+  for index, quote in enumerate(quote_list):
+    sentence = str(index+1) + ". " + quote_list[index].get_text() 
+    # print("{}. {}".format(index+1, sentence))
+    collections_quote.append(sentence + "\n")
+  collections_quote_str = "\n".join(collections_quote)
+  return collections_quote_str
 
 
 if __name__ == "__main__":
